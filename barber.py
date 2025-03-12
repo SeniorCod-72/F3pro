@@ -12,4 +12,12 @@ class Barber(Base):
     name = Column(Integer, primary_key=True)
 
 
-    
+
+class customer(Base):
+    __tablename__ = "customers"
+
+    id = Column(Integer, primary_key=True)
+    name = Column(String)
+    phone = Column(String)
+
+
