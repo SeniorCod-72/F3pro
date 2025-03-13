@@ -1,7 +1,8 @@
 from sqlalchemy import Column, Integer, String, create_engine, ForeignKey
-from sqlalchemy.orm import declarative_base
+from sqlalchemy.orm import declarative_base, relationship
 from sqlalchemy import DateTime
 from sqlalchemy import datetime 
+
 
 
 Base = declarative_base()
@@ -12,6 +13,10 @@ class Barber(Base):
 
     id = Column(Integer, primary_key=True)
     name = Column(Integer, primary_key=True)
+    phone = Column(String, nullable=False)
+
+    appointments = relationship('Appointment', back_populates='barber')
+
 
 
 
@@ -22,6 +27,8 @@ class customer(Base):
     name = Column(String)
     phone = Column(String)
 
+    appointments = relationship('Appointment', back_populates='customer')
+
 
 
 class Appointment(Base):
@@ -31,3 +38,6 @@ class Appointment(Base):
     date_time = Column(DateTime, nullable=False, default=datetime.utcnow)
     barber_id = Column(Integer, ForeignKey('barbers.id'), nullable=False)
     customer_id = Column(Integer, ForeignKey('customer.id'), nullable=False)
+
+
+    
