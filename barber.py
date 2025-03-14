@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, String, create_engine, ForeignKey
-from sqlalchemy.orm import declarative_base, relationship
+from sqlalchemy.orm import declarative_base, relationship,sessionmaker
 from sqlalchemy import DateTime
-from sqlalchemy import datetime 
+from datetime import datetime 
 
 
 
@@ -20,7 +20,7 @@ class Barber(Base):
 
 
 
-class customer(Base):
+class Customer(Base):
     __tablename__ = "customers"
 
     id = Column(Integer, primary_key=True)
@@ -37,7 +37,14 @@ class Appointment(Base):
     id = Column(Integer, primary_key=True)
     date_time = Column(DateTime, nullable=False, default=datetime.utcnow)
     barber_id = Column(Integer, ForeignKey('barbers.id'), nullable=False)
-    customer_id = Column(Integer, ForeignKey('customer.id'), nullable=False)
+    customer_id = Column(Integer, ForeignKey('customers.id'), nullable=False)
 
 
-    
+    barber = relationship('Barber', back_populates='appointments')
+    customer = relationship('Customer', back_populates='appointments')
+
+
+engine = create_engine('sqlite:///bssm.db')
+Base.metadata.create_all(engine)
+# Session = sessionmaker(bind=engine)
+#session = Session()
