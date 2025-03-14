@@ -3,8 +3,8 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from datetime import datetime
 
-DATABASE_URL = "sqlite:///bssm.db"
-engine = create_engine(DATABASE_URL)
+bssm_url = "sqlite:///bssm.db"
+engine = create_engine(bssm_url)
 Session = sessionmaker(bind=engine)
 session = Session()
 

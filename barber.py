@@ -48,7 +48,7 @@ class Appointment(Base):
     customer = relationship('Customer', back_populates='appointments')
 
 
-engine = create_engine('sqlite:///bssm.db')
-Base.metadata.create_all(engine)
+# engine = create_engine('sqlite:///bssm.db')
+# Base.metadata.create_all(engine)
 # Session = sessionmaker(bind=engine)
 #session = Session()
