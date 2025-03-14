@@ -11,8 +11,8 @@ Base = declarative_base()
 class Barber(Base):
     __tablename__ = "barbers"
 
-    id = Column(Integer, primary_key=True)
-    name = Column(Integer, primary_key=True)
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    name = Column(String, nullable=False)
     phone = Column(String, nullable=False)
     specialization = Column(String, nullable=False)
     years_of_experience = Column(Integer, nullable=False)
@@ -48,7 +48,7 @@ class Appointment(Base):
     customer = relationship('Customer', back_populates='appointments')
 
 
-# engine = create_engine('sqlite:///bssm.db')
-# Base.metadata.create_all(engine)
+engine = create_engine('sqlite:///bssm.db')
+Base.metadata.create_all(engine)
 # Session = sessionmaker(bind=engine)
 #session = Session()
