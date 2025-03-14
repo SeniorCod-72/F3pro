@@ -14,6 +14,7 @@ class Barber(Base):
     id = Column(Integer, primary_key=True)
     name = Column(Integer, primary_key=True)
     phone = Column(String, nullable=False)
+    
 
     appointments = relationship('Appointment', back_populates='barber')
 
